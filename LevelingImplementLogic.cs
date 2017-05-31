@@ -13,7 +13,8 @@ namespace ConsoleApp3
             protected int xp = 0;
             protected int xpGained = 0;
             protected int mastery = 0;
-
+            
+        //only call if win
         public int levelingUp()
         {
             Leveling lvl = new Leveling(level, xp, xpGained);
@@ -21,7 +22,7 @@ namespace ConsoleApp3
             Random randy = new Random();
             xpGained = randy.Next(50, 100);
 
-            if(/*win*/ && xp + xpGained = 200)
+            if(xp + xpGained = 200)
             {
                 Console.WriteLine("You Leveled UP!!!!!");
                 xp += xpGained;
