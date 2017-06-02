@@ -4,17 +4,26 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace MortalCombatXS
+namespace MCXS
 {
     class Tank : Player
     {
         Random rand = new Random();
         public Tank() : base()
         {
-            BaseHealth = rand.Next(80, 176);
-            BaseDamage = rand.Next(0, 101);
+            BaseHealth = 125;
+            BaseDamage = rand.Next(25, 101);
+            currentHP = BaseHealth + HealthMod;
             DamageMod = 0;
+            Level = 1;
             HealthMod = 0;
+            eqiuppedWeapon = Loot.GenerateItem();
+        }
+
+        public override string ToString()
+        {
+            return $"Name - Tank \n {base.ToString()}";
+
         }
     }
 }

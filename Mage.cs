@@ -4,17 +4,26 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace MortalCombatXS
+namespace MCXS
 {
     public class Mage : Player
     {
-        Random rand = new Random();       
+        Random rand = new Random();
         public Mage() : base()
         {
-            BaseHealth = rand.Next(70, 151);
-            BaseDamage = rand.Next(0, 81);
+            BaseHealth = 150;
+            BaseDamage = rand.Next(0, 60);
+            currentHP = BaseHealth + HealthMod;
             DamageMod = 0;
+            Level = 1;
             HealthMod = 0;
+            eqiuppedWeapon = Loot.GenerateItem();
+        }
+
+        public override string ToString()
+        {
+            return $"Name - Mage \n {base.ToString()}";
+
         }
     }
 }

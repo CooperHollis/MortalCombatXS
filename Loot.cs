@@ -4,32 +4,16 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace MortalKombatXSLoot
+namespace MCXS
 {
     public class Loot
     {
         public static Random rand = new Random();
         public static List<Item> lootList = new List<Item>();
-        public static void Main()
+
+        public static Items.Weapon GenerateItem()
         {
-            Run();
-        }
-        public static void Run()
-        {
-            GenerateLoot(5);   
-        }
-         public static void GenerateLoot(int randItem)
-        {
-            int newRand = rand.Next(0, 18);
-            lootList.Add(GenerateItems());
-            foreach(Item item in lootList)
-            {
-                Console.WriteLine(item);
-            }
-        }
-        public static Item GenerateItems()
-        {
-            int randValue = rand.Next(1, 51);
+
             string[] randNames = new string[]
             {
                 "Machete",
@@ -51,9 +35,17 @@ namespace MortalKombatXSLoot
                 "Samsung Galaxy S8",
                 "Nokia Phone",
             };
+
             string randName = randNames[rand.Next(0, randNames.Length - 1)];
-            Item item = new Item(randName, randValue);
-            return item; 
+           
+            int DAmount = rand.Next(1, 51);
+            Items.Weapon Weapon = new Items.Weapon()
+            {
+                Name = randName,
+                damageAmount = DAmount
+                
+            };
+            return Weapon;
         }
-    }           
+    }
 }
