@@ -4,26 +4,42 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace MCXS
+namespace ConsoleApp3.CharacterClasses
 {
-    public class Mage : Player
+    class Mage
     {
-        Random rand = new Random();
-        public Mage() : base()
+        protected string name;
+        protected int baseHealth { get; set; }
+        protected int baseDamage { get; set; }
+        protected int healthMod { get; set; }
+        protected int damageMod { get; set; }
+        protected int level { get; set; }
+        public Mage(string name, int level, int baseHealth, int baseDamage)
         {
-            BaseHealth = 150;
-            BaseDamage = rand.Next(0, 60);
-            currentHP = BaseHealth + HealthMod;
-            DamageMod = 0;
-            Level = 1;
-            HealthMod = 0;
-            eqiuppedWeapon = Loot.GenerateItem();
+            if (baseHealth > 150 || baseHealth < 70)
+            {
+                baseHealth = 120;
+            }
+            if (baseDamage > 70 || baseDamage < 15)
+            {
+                baseDamage = 60;
+            }
+
+            this.name = name;
+            this.level = level;
+            this.baseHealth = baseHealth;
+            this.baseDamage = baseDamage;
         }
 
         public override string ToString()
         {
-            return $"Name - Mage \n {base.ToString()}";
+            StringBuilder str = new StringBuilder();
+            str.Append("Class: " + name);
+            str.Append("Health: " + baseHealth);
+            str.Append("Damage: " + baseDamage);
 
+            return str.ToString();
         }
     }
 }
+

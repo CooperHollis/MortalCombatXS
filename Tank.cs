@@ -4,26 +4,42 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace MCXS
+namespace ConsoleApp3.CharacterClasses
 {
-    class Tank : Player
+    class Tank
     {
-        Random rand = new Random();
-        public Tank() : base()
+        protected string name;
+        protected int baseHealth { get; set; }
+        protected int baseDamage { get; set; }
+        protected int healthMod { get; set; }
+        protected int damageMod { get; set; }
+        protected int level { get; set; }
+        public Tank(string name, int level, int baseHealth, int baseDamage)
         {
-            BaseHealth = 125;
-            BaseDamage = rand.Next(25, 101);
-            currentHP = BaseHealth + HealthMod;
-            DamageMod = 0;
-            Level = 1;
-            HealthMod = 0;
-            eqiuppedWeapon = Loot.GenerateItem();
+            if (baseHealth > 175 || baseHealth < 80)
+            {
+                baseHealth = 130;
+            }
+            if (baseDamage > 100 || baseDamage < 50)
+            {
+                baseDamage = 70;
+            }
+
+            this.name = name;
+            this.level = level;
+            this.baseHealth = baseHealth;
+            this.baseDamage = baseDamage;
         }
 
         public override string ToString()
         {
-            return $"Name - Tank \n {base.ToString()}";
+            StringBuilder str = new StringBuilder();
+            str.Append("Class: " + name);
+            str.Append("Health: " + baseHealth);
+            str.Append("Damage: " + baseDamage);
 
+            return str.ToString();
         }
     }
 }
+
